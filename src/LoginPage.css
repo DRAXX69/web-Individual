@@ -1,0 +1,234 @@
+/* Login Container */
+.login-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1f2937 0%, #000000 50%, #374151 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+  }
+  
+  /* Background Pattern */
+  .background-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+  
+  /* Login Card */
+  .login-card {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(75, 85, 99, 0.5);
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 100%;
+    max-width: 28rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Brand Section */
+  .brand-section {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .brand-title {
+    font-size: 1.875rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .brand-accent {
+    color: #ef4444;
+  }
+  
+  .brand-subtitle {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  .brand-divider {
+    width: 5rem;
+    height: 1px;
+    background: linear-gradient(to right, #ef4444, #f97316);
+    margin: 1rem auto 0;
+  }
+  
+  /* Form Container */
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  /* Input Groups */
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #d1d5db;
+    margin-bottom: 0.5rem;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(31, 41, 55, 0.5);
+    border: 1px solid #4b5563;
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+  
+  .input-field::placeholder {
+    color: #9ca3af;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    box-shadow: 2px solid #ef4444;
+    border-color: transparent;
+  }
+  
+  /* Form Options */
+  .form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.875rem;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    color: #d1d5db;
+    cursor: pointer;
+  }
+  
+  .checkbox-input {
+    margin-right: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #4b5563;
+    background: #1f2937;
+    accent-color: #ef4444;
+  }
+  
+  .forgot-link {
+    color: #f87171;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .forgot-link:hover {
+    color: #fca5a5;
+  }
+  
+  /* Login Button */
+  .login-button {
+    width: 100%;
+    background: linear-gradient(to right, #dc2626, #ef4444);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-button:hover {
+    background: linear-gradient(to right, #b91c1c, #dc2626);
+    transform: scale(1.02);
+  }
+  
+  .login-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #ef4444;
+
+  }
+  
+  /* Divider */
+  .divider {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .divider-line {
+    flex: 1;
+    border-top: 1px solid #374151;
+  }
+  
+  .divider-text {
+    padding: 0 1rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+  
+  /* Signup Section */
+  .signup-section {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  
+  .signup-text {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+  
+  .signup-link {
+    color: #f87171;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .signup-link:hover {
+    color: #fca5a5;
+  }
+  
+  /* Footer */
+  .footer-text {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 640px) {
+    .login-card {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+    
+    .brand-title {
+      font-size: 1.5rem;
+    }
+    
+    .form-options {
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+  }
