@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
 
-export default function LoginPage() {
+export default function LoginPage({ onNavigateToRegister }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = () => {
     console.log('Login attempt:', { email, password });
     // Add your login logic here
+  };
+
+  const handleRegisterClick = (e) => {
+    e.preventDefault();
+    if (onNavigateToRegister) {
+      onNavigateToRegister();
+    }
   };
 
   return (
@@ -90,13 +97,13 @@ export default function LoginPage() {
         <div className="signup-section">
           <p className="signup-text">
             Don't have an account?{' '}
-            <a href="#" className="signup-link">
-              Request Access
+            <a href="#" className="signup-link" onClick={handleRegisterClick}>
+              Register Here
             </a>
           </p>
         </div>
 
-        
+        {/* Footer */}
         <div className="footer-text">
           Exclusive access to premium hypercars
         </div>
