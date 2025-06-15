@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './RegisterPage.css';
 
-export default function RegisterPage({ onNavigateToLogin }) {
+export default function RegisterPage({ onNavigateToLogin, onRegister }) {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -11,6 +11,8 @@ export default function RegisterPage({ onNavigateToLogin }) {
     confirmPassword: '',
     agreeTerms: false
   });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -18,11 +20,69 @@ export default function RegisterPage({ onNavigateToLogin }) {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    }
+
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Email is invalid';
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    }
+
+    if (!formData.password) {
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password';
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
+
+    if (!formData.agreeTerms) {
+      newErrors.agreeTerms = 'You must agree to the terms';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = () => {
-    console.log('Registration attempt:', formData);
-    // Add your registration logic here
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    // Simulate registration process
+    setTimeout(() => {
+      onRegister(formData);
+      setIsLoading(false);
+    }, 1500);
   };
 
   const handleLoginClick = (e) => {
@@ -64,7 +124,13 @@ export default function RegisterPage({ onNavigateToLogin }) {
                 className="input-field"
                 placeholder="Enter first name"
                 required
+                disabled={isLoading}
               />
+              {errors.firstName && (
+                <span style={{ color: '#fca5a5', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                  {errors.firstName}
+                </span>
+              )}
             </div>
 
             <div className="input-group half-width">
@@ -80,7 +146,13 @@ export default function RegisterPage({ onNavigateToLogin }) {
                 className="input-field"
                 placeholder="Enter last name"
                 required
+                disabled={isLoading}
               />
+              {errors.lastName && (
+                <span style={{ color: '#fca5a5', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                  {errors.lastName}
+                </span>
+              )}
             </div>
           </div>
 
@@ -95,9 +167,15 @@ export default function RegisterPage({ onNavigateToLogin }) {
               value={formData.email}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="Enter your email"
+              placeholder="Enter email address"
               required
+              disabled={isLoading}
             />
+            {errors.email && (
+              <span style={{ color: '#fca5a5', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                {errors.email}
+              </span>
+            )}
           </div>
 
           <div className="input-group">
@@ -111,9 +189,15 @@ export default function RegisterPage({ onNavigateToLogin }) {
               value={formData.phone}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="Enter your phone number"
+              placeholder="Enter phone number"
               required
+              disabled={isLoading}
             />
+            {errors.phone && (
+              <span style={{ color: '#fca5a5', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                {errors.phone}
+              </span>
+            )}
           </div>
 
           <div className="input-group">
@@ -127,9 +211,15 @@ export default function RegisterPage({ onNavigateToLogin }) {
               value={formData.password}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="Create a strong password"
+              placeholder="Enter password"
               required
+              disabled={isLoading}
             />
+            {errors.password && (
+              <span style={{ color: '#fca5a5', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                {errors.password}
+              </span>
+            )}
           </div>
 
           <div className="input-group">
@@ -143,9 +233,15 @@ export default function RegisterPage({ onNavigateToLogin }) {
               value={formData.confirmPassword}
               onChange={handleInputChange}
               className="input-field"
-              placeholder="Confirm your password"
+              placeholder="Confirm password"
               required
+              disabled={isLoading}
             />
+            {errors.confirmPassword && (
+              <span style={{ color: '#fca5a5', fontSize: '0.75rem', marginTop: '0.25rem' }}>
+                {errors.confirmPassword}
+              </span>
+            )}
           </div>
 
           <div className="checkbox-group">
@@ -156,41 +252,47 @@ export default function RegisterPage({ onNavigateToLogin }) {
                 checked={formData.agreeTerms}
                 onChange={handleInputChange}
                 className="checkbox-input"
-                required
+                disabled={isLoading}
               />
-              I agree to the <a href="#" className="terms-link">Terms of Service</a> and <a href="#" className="terms-link">Privacy Policy</a>
+              <span className="checkbox-text">
+                I agree to the <a href="#" className="terms-link">Terms of Service</a> and{' '}
+                <a href="#" className="terms-link">Privacy Policy</a>
+              </span>
             </label>
+            {errors.agreeTerms && (
+              <span style={{ color: '#fca5a5', fontSize: '0.75rem', marginTop: '0.25rem', display: 'block' }}>
+                {errors.agreeTerms}
+              </span>
+            )}
           </div>
 
           <button
+            type="button"
             onClick={handleSubmit}
-            className="register-button"
-            disabled={!formData.agreeTerms}
+            className={`register-button ${isLoading ? 'loading' : ''}`}
+            disabled={isLoading}
           >
-            Request VIP Access
+            {isLoading ? (
+              <div className="loading-spinner">
+                <div className="spinner"></div>
+                Creating Account...
+              </div>
+            ) : (
+              'Create Account'
+            )}
           </button>
-        </div>
 
-        {/* Divider */}
-        <div className="divider">
-          <div className="divider-line"></div>
-          <div className="divider-text">or</div>
-          <div className="divider-line"></div>
-        </div>
-
-        {/* Login Link */}
-        <div className="login-section">
-          <p className="login-text">
+          <div className="login-link">
             Already have an account?{' '}
-            <a href="#" className="login-link" onClick={handleLoginClick}>
-              Sign In Here
-            </a>
-          </p>
-        </div>
-
-        {/* Footer */}
-        <div className="footer-text">
-          Applications are reviewed within 24-48 hours
+            <button
+              type="button"
+              onClick={handleLoginClick}
+              className="link-button"
+              disabled={isLoading}
+            >
+              Sign in here
+            </button>
+          </div>
         </div>
       </div>
     </div>
