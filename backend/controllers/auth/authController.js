@@ -16,19 +16,20 @@ const signup = async (req, res) => {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    const existingUser = await User.findOne({ where: { email } });
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists with this email' });
     }
 
-    const user = await User.create({ name, email, password });
-    const token = generateToken(user.id);
+    const user = new User({ name, email, password });
+    await user.save();
+    const token = generateToken(user._id);
 
     res.status(201).json({
       message: 'User created successfully',
       token,
       user: {
-        id: user.id,
+        id: user._id,
         name: user.name,
         email: user.email,
       },
@@ -47,7 +48,7 @@ const signin = async (req, res) => {
       return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
@@ -57,13 +58,13 @@ const signin = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    const token = generateToken(user.id);
+    const token = generateToken(user._id);
 
     res.status(200).json({
       message: 'Login successful',
       token,
       user: {
-        id: user.id,
+        id: user._id,
         name: user.name,
         email: user.email,
       },
@@ -79,7 +80,7 @@ const getProfile = async (req, res) => {
     const user = req.user;
     res.status(200).json({
       user: {
-        id: user.id,
+        id: user._id,
         name: user.name,
         email: user.email,
         createdAt: user.createdAt,
