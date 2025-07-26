@@ -1,0 +1,328 @@
+/* Dashboard Container */
+.dashboard-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #000000 50%, #1e293b 100%);
+    color: white;
+    position: relative;
+  }
+  
+  /* Background Pattern */
+  .dashboard-bg-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.01'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 0;
+  }
+  
+  /* Header */
+  .dashboard-header {
+    position: relative;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(75, 85, 99, 0.3);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .brand-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .brand-accent {
+    color: #ef4444;
+  }
+  
+  .header-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .nav-link {
+    color: #d1d5db;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-link:hover {
+    color: #ef4444;
+  }
+  
+  .logout-btn {
+    background: linear-gradient(to right, #dc2626, #ef4444);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .logout-btn:hover {
+    background: linear-gradient(to right, #b91c1c, #dc2626);
+    transform: scale(1.05);
+  }
+  
+  /* Main Content */
+  .dashboard-main {
+    position: relative;
+    z-index: 5;
+    padding: 2rem;
+  }
+  
+  /* Hero Section */
+  .dashboard-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #ef4444, #f97316, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #9ca3af;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ef4444;
+    display: block;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  
+  /* Cars Grid */
+  .cars-section {
+    margin-top: 4rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .cars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  /* Car Card */
+  .car-card {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(75, 85, 99, 0.3);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .car-card:hover {
+    transform: translateY(-8px);
+    border-color: #ef4444;
+    box-shadow: 0 20px 40px rgba(239, 68, 68, 0.2);
+  }
+  
+  .car-image {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #1f2937, Red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+
+  
+  .car-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(239, 68, 68, 0.1) 50%, transparent 60%);
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  .car-info {
+    padding: 1.5rem;
+  }
+  
+  .car-brand {
+    font-size: 0.875rem;
+    color: #ef4444;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+  
+  .car-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  .car-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #fbbf24;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Specs Grid */
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .spec-item {
+    background: rgba(31, 41, 55, 0.5);
+    border: 1px solid rgba(75, 85, 99, 0.3);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    text-align: center;
+  }
+  
+  .spec-value {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: white;
+    display: block;
+  }
+  
+  .spec-label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.25rem;
+  }
+  
+  /* View Details Button */
+  .view-details-btn {
+    width: 100%;
+    background: linear-gradient(to right, #dc2626, #ef4444);
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .view-details-btn:hover {
+    background: linear-gradient(to right, #b91c1c, #dc2626);
+    transform: scale(1.02);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .dashboard-header {
+      padding: 1rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .header-nav {
+      gap: 1rem;
+    }
+  
+    .dashboard-main {
+      padding: 1rem;
+    }
+  
+    .hero-title {
+      font-size: 2rem;
+    }
+  
+    .hero-stats {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    .cars-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  
+    .specs-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .car-card {
+      margin: 0 0.5rem;
+    }
+    
+    .hero-title {
+      font-size: 1.75rem;
+    }
+    
+    .section-title {
+      font-size: 1.5rem;
+    }
+  }
